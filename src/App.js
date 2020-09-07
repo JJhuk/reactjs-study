@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Movie from  './Movie'
+import Movie from './Movie'
 import "./App.css"
 
 class App extends React.Component {
@@ -17,7 +17,7 @@ class App extends React.Component {
                 }
             }
         } = await axios.get("https://yts.mx/api/v2/list_movies.json?sort_by=rating")
-        this.setState({movies:movies, isLoading:false})
+        this.setState({movies: movies, isLoading: false})
     }
 
     componentDidMount() {
@@ -25,9 +25,9 @@ class App extends React.Component {
     }
 
     render() {
-        const {isLoading,movies} = this.state;
+        const {isLoading, movies} = this.state;
         return (
-            <section className ="container">
+            <section className="container">
                 {isLoading
                     ? <div className={"loader"}>
                         <span className={"loader__text"}>Loading...</span>
@@ -42,6 +42,7 @@ class App extends React.Component {
                                     year={movie.year}
                                     title={movie.title}
                                     genres={movie.genres}
+                                    rating={movie.rating}
                                 />
                             })}
                         </div>
@@ -50,7 +51,6 @@ class App extends React.Component {
         )
     }
 }
-
 
 
 export default App;
